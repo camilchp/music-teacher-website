@@ -1,0 +1,73 @@
+/* body {
+    font-family: sans-serif;
+}
+
+button {
+    border:thin solid red;
+    background-color: teal;
+    padding:0.4em;
+} */
+
+.game {
+    display: none;
+}
+
+.game:target {
+    display: block;
+}
+
+.menu {
+    display: none;
+}
+
+.menu:target{
+    display: block;
+}
+
+body.easy .hard{
+    display:none;
+}
+
+.answer {
+    border: none;
+    margin: 4mm 0mm;
+    filter: blur(10px);
+    font-size: 17pt;
+    background-color: white;
+}
+
+/* body * {
+    transition: 0.75s;
+}
+
+
+.answer:hover {
+    color:darkblue;
+    font-size: 150%;
+    
+} */
+
+body.revealed .answer {
+    filter: blur(0);
+    transition: filter 0.75s;
+}
+
+#tr_quality_hard {
+    display: block;
+}
+
+#tr_quality_hard div {
+    display: inline;
+}
+
+.inversions {
+    display: none;
+}
+
+#triads.show_inversions .inversions {
+    display: inline;
+}
+
+#pr_seventh_chords, #pr_common_exotic_triads {
+    display: none;
+}

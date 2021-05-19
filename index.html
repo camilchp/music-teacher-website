@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<script type="text/javascript" src="brython.js"></script>
+<script type="text/javascript" src="brython_stdlib.js"></script>
+<link rel='stylesheet' href='style.css'>
+</head>
+
+<body onload="brython(1)" class='easy'>
+
+<h1>Music Teacher</h1>
+
+<nav id='game_mode_nav' class='menu'>
+    <ul>
+        <li><a href='#ear_training_nav'>Ear Training</a></li>
+        <li><a href='#sight_reading_nav'>Sight Reading</a></li>
+    </ul>
+</nav>
+
+<nav id='ear_training_nav' class='menu'>
+    <ul>
+        <li><a href='#triads'>Triads</a></li>
+        <li><a href='#progressions'>Diatonic progressions</a></li>
+        <li><a href='#intervals'>Intervals</a></li>
+        <li><a href='#et_game4'>Game4</a></li>
+    </ul>
+</nav>
+
+<nav id='sight_reading_nav' class='menu'>
+    <ul>
+        <li><a href='#sr_game1'>Game1</a></li>
+        <li><a href='#sr_game2'>Game2</a></li>
+        <li><a href='#sr_game3'>Game3</a></li>
+        <li><a href='#sr_game4'>Game4</a></li>
+    </ul>
+</nav>
+
+<div id='tr_settings' class='menu settings'>
+    <h2>Difficulty</h2>
+    <div>
+        <input type="radio" id="tr_easy" name="tr_diff" value="easy" checked>
+        <label for="tr_easy">Easy</label>
+    </div>  
+    <div>
+        <input type="radio" id="tr_hard" name="tr_diff" value="hard">
+        <label for="tr_hard">Hard</label>
+    </div>
+    <a href='#triads'>Back to game</a>
+</div>
+
+<div id='pr_settings' class='menu settings'>
+    <div id='pr_available_degrees'>
+        <h2>Available scale degrees :</h2>
+        <div>
+            <input type="checkbox" id="diatonic_triads" name="degrees"
+                checked>
+            <label for="diatonic_triads">diatonic triads</label>
+        </div>
+        <div>
+            <input type="checkbox" id="common_exotic_triads" name="degrees">
+            <label for="common_exotic_triads">common exotic triads</label>
+        </div>
+        <div>
+            <input type="checkbox" id="seventh_chords" name="degrees">
+            <label for="common_exotic_chords">seventh chords</label>
+        </div>
+    </div>
+    <a href='#progressions'>Back to game</a>
+</div>
+
+<div id='in_settings' class='menu settings'>
+    <div>
+        <h2>Available intervals</h2>
+        <div id = 'available_intervals'>
+            <input type="checkbox" id='m2' name="ints" checked>m2</input>
+            <input type="checkbox" id='M2' name="ints" checked>M2</input>
+            <input type="checkbox" id='m3' name="ints" checked>m3</input>
+            <input type="checkbox" id='M3' name="ints" checked>M3</input>
+            <input type="checkbox" id='p4' name="ints" checked>p4</input>
+            <input type="checkbox" id='#4' name="ints" checked>#4</input>
+            <input type="checkbox" id='p5' name="ints" checked>p5</input>
+            <input type="checkbox" id='m6' name="ints" checked>m6</input>
+            <input type="checkbox" id='M6' name="ints" checked>M6</input>
+            <input type="checkbox" id='b7' name="ints" checked>b7</input>
+            <input type="checkbox" id='M7' name="ints" checked>M7</input>
+            <input type="checkbox" id='oct' name="ints" checked>oct</input>
+            <input type="checkbox" id='m9' name="ints" checked>m9</input>
+            <input type="checkbox" id='M9' name="ints" checked>M9</input>
+            <input type="checkbox" id='#9' name="ints" checked>#9</input>
+            <input type="checkbox" id='b11' name="ints" checked>b11</input>
+            <input type="checkbox" id='11' name="ints" checked>11</input>
+            <input type="checkbox" id='#11' name="ints" checked>#11</input>
+            <input type="checkbox" id='d13' name="ints" checked>d13</input>
+            <input type="checkbox" id='m13' name="ints" checked>m13</input>
+            <input type="checkbox" id='M13' name="ints" checked>M13</input>
+            <input type="checkbox" id='A13' name="ints" checked>A13</input>
+        </div>
+    </div>
+    <a href='#intervals'>Back to game</a>
+</div>
+
+<div id='triads' class = 'game'>
+    <h2 class='instructions'>Guess the triad !</h2>
+    <div>
+        <button id='tr_play'>▶️</button>
+        <button id='tr_replay'>🔁</button>
+        <button id='tr_slow'>⏪</button>
+    </div>
+    <button id='tr_name' class='answer'></button>
+    <div id='tr_quality'>
+        <div id='tr_quality_easy'>
+            <button id='tr_maj'>maj</button>
+            <button id='tr_min'>min</button>
+            <button id='tr_dim'>dim</button>
+            <button id='tr_aug'>aug</button>
+        </div>
+        <div id='tr_quality_hard'>
+            <div>
+                <button id='tr_sus2' class='hard'>sus2</button>
+                <button id='tr_sus4' class='hard'>sus4</button>
+                <button id='tr_Q' class='hard'>quartal</button>
+            </div>
+            <div>
+                <button id='tr_lyd' class='hard'>lyd</button>
+                <button id='tr_locr'class='hard'>locr</button>
+                <button id='tr_Q+' class='hard'>Q+</button>
+            </div>
+            <div>
+                <button id='tr_sus4b5' class='hard'>sus4b5</button>
+                <button id='tr_phr'class='hard'>phr</button>
+                <button id='tr_+4Q' class='hard'>+4Q</button>
+            </div>
+        </div>
+    </div>
+    <h2 id='tr_quality_result'></h2>
+    <div id='tr_inversion' class="inversions">
+        <button id='tr_0'>root position</button>
+        <button id='tr_1'>1st inversion</button>
+        <button id='tr_2'>2nd inversion</button>
+    </div>
+    <h2 id='tr_inversion_result'></h2>
+    <a href='#tr_settings'>game settings</a>
+</div>
+<div id='progressions' class='game diatonic_triads'>
+    <h2 class='instructions'>Guess the progression !</h2>
+    <div>
+        <button id='pr_play'>▶️</button>
+        <button id='pr_replay'>🔁</button>
+        <button id='pr_slow'>⏪</button>
+    </div>
+    <button id='pr_name' class='answer'></button>
+    <div id='pr_degree'>
+        <div id='pr_diatonic_triads'>
+            <button id='pr_I'>I</button>
+            <button id='pr_ii'>ii</button>
+            <button id='pr_iii'>iii</button>
+            <button id='pr_IV'>IV</button>
+            <button id='pr_V'>V</button>
+            <button id='pr_vi'>vi</button>
+            <button id='pr_viidim'>vii°</button>
+        </div>
+        <div id='pr_common_exotic_triads'>
+            <button id='pr_II'>II</button>
+            <button id='pr_III'>III</button>
+            <button id='pr_iv'>iv</button>
+        </div>
+        <div id='pr_seventh_chords'>
+            <button id='pr_I-maj7'>I-maj7</button>
+            <button id='pr_ii-min7'>ii-min7</button>
+            <button id='pr_iii-min7'>iii-min7</button>
+            <button id='pr_IV-maj7'>IV-maj7</button>
+            <button id='pr_V7'>V7</button>
+            <button id='pr_vi-min7'>vi-min7</button>
+            <button id='pr_vii-dim7'>vii°7</button>
+        </div>
+    </div>
+    <h2 id='pr_result'></h2>
+
+    <h2 id='pr_so_far'></h2>
+    <a href='#pr_settings'>game settings</a>
+</div>
+<div id='intervals' class = 'game'>
+    <h2 class='instructions'>Guess the interval !</h2>
+    <div>
+        <button id='in_play'>▶️</button>
+        <button id='in_replay'>🔁</button>
+    </div>
+    <div>
+        <label><input type = 'checkbox' id='in_sim'>Toggle simultaneous</label>
+    </div>
+    <button id='in_name' class='answer'></button>
+    <div id='in'>
+        <button id='in_m2'>m2</button>
+        <button id='in_M2'>M2</button>
+        <button id='in_m3'>m3</button>
+        <button id='in_M3'>M3</button>
+        <button id='in_p4'>p4</button>
+        <button id='in_#4'>#4</button>
+        <button id='in_p5'>p5</button>
+        <button id='in_m6'>m6</button>
+        <button id='in_M6'>M6</button>
+        <button id='in_b7'>b7</button>
+        <button id='in_M7'>M7</button>
+        <button id='in_oct'>oct</button>
+        <button id='in_m9'>m9</button>
+        <button id='in_M9'>M9</button>
+        <button id='in_#9'>#9</button>
+        <button id='in_b11'>b11</button>
+        <button id='in_11'>11</button>
+        <button id='in_#11'>#11</button>
+        <button id='in_d13'>d13</button>
+        <button id='in_m13'>m13</button>
+        <button id='in_M13'>M13</button>
+        <button id='in_A13'>A13</button>
+    </div>
+    <h2 id='in_result'></h2>
+    <a href='#in_settings'>game settings</a>
+</div>
+<div id='et_game4' class = 'game'>Game4</div>
+
+<div id='sr_game1' class = 'game'>Game1</div>
+<div id='sr_game2' class = 'game'>Game2</div>
+<div id='sr_game3' class = 'game'>Game3</div>
+<div id='sr_game4' class = 'game'>Game4</div>
+
+<a id="main_menu" href="#game_mode_nav">----main menu----</a>
+
+<div id="players">
+    <audio id="0"></audio>
+    <audio id="1"></audio>
+    <audio id="2"></audio>
+    <audio id="3"></audio>
+    <audio id="4"></audio>
+    <audio id="5"></audio>
+    <audio id="6"></audio>
+</div>
+
+<script type="text/python" src="script.py"></script>
+
+</body>
+
+</html>
