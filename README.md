@@ -1,6 +1,6 @@
 # music-teacher-website
 
-🎵 A simple website to practice music theory, available at [h.champin.net/music-teacher](h.champin.net/music-teacher) 🎵
+🎵 A simple website to practice music theory, available at [h.champin.net/music-teacher](https://h.champin.net/music-teacher) 🎵
 
 ## Exercises include:
 
