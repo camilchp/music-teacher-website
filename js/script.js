@@ -57,12 +57,17 @@ const ACTX = new (AudioContext || webkitAudioContext)();
 if (!ACTX) throw 'Not supported :()';
 
 var GAMEMODE = 'chords';
+const GAIN = 0.2;
 
 //----- Functions -----------------------------------
 
 function newOscillator() {
+    const gain = ACTX.createGain();
+    gain.gain.value = GAIN;
+    gain.connect(ACTX.destination);
     const osc = ACTX.createOscillator();
     osc.type = 'sine';
+    osc.connect(gain);
     return osc
 };
 
@@ -71,7 +76,6 @@ function playChord(noteList) {
     noteList.forEach(note => {
         const osc = newOscillator();
         osc.frequency.value = FREQ[note];
-        osc.connect(ACTX.destination);
         osc.start(ct);
         osc.stop(ct+1);
     });
@@ -83,12 +87,12 @@ function playArpegio(noteList) {
     noteList.forEach(note => {
         const osc = newOscillator();
         osc.frequency.value = FREQ[note];
-        osc.connect(ACTX.destination);
         osc.start(t);
         osc.stop(t+0.5);
         t = t+0.5;
     });
 };
+
 
 function generateChoices() {
     return [{'maj7':[0, M3, p5, M7], 'min7':[0, m3, p5, m7], '7':[0, M3, p5, m7]},
